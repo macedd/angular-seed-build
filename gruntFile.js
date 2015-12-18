@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         app: ['src/app/**/*.tpl.html'],
         common: ['src/common/**/*.tpl.html']
       },
-      less: ['less/stylesheet.less'], // recess:build doesn't accept ** in its file patterns
+      less: ['less/app.less'],
       lessWatch: ['less/**/*.less']
     },
 
@@ -86,13 +86,36 @@ module.exports = function(grunt) {
         }
       }
     },
-
+    uglify: {
+      dist: {
+        files: {
+          'app/app.bundle.min.js': [jsFileList, '<%= src.js %>' ,'<%= src.jsTpl %>']
+        }
+      }
+    },
+    watch:{
+      all: {
+        files:['<%= src.js %>', '<%= src.specs %>', '<%= src.lessWatch %>', '<%= src.tpl.app %>', '<%= src.tpl.common %>', '<%= src.html %>'],
+        tasks:['default','timestamp']
+      },
+      build: {
+        files:['<%= src.js %>', '<%= src.specs %>', '<%= src.lessWatch %>', '<%= src.tpl.app %>', '<%= src.tpl.common %>', '<%= src.html %>'],
+        tasks:['build','timestamp']
+      }
+    },
   });
 
-  // Register tasks
+  // Print a timestamp (useful for when watching)
+  grunt.registerTask('timestamp', function() {
+    grunt.log.subhead(Date());
+  });
+
+  /**
+   * Register tasks
+   */
   grunt.registerTask('default', [
     'dev',
-    'watch'
+    'watch:all'
   ]);
   grunt.registerTask('dev', [
     'jshint',
