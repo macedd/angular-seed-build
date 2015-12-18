@@ -1,3 +1,40 @@
+# angular-seed build
+
+A building system on top of angular seed that concats and generates bundled js/css.
+
+## Directory Layout
+
+```
+app/                    --> all of the source files for the application
+  app.bundle.*            --> grunt generated compiled files
+  app.js                  --> main application module
+  index.html              --> app layout file (the main html template file of the app)
+build-js.json         --> javascript files to concat in the bundle
+build-css.json        --> stylesheets to concat in the bundle
+gruntFile.js          --> grunt tasks definition
+less/                 --> less files for the application stylesheets
+  app.less              --> default styles
+packages.json         --> npm dependencies
+bower.json            --> bower dependencies
+```
+
+## Registred Tasks
+
+- **grunt** (default): dev build and watch
+- **grunt dev**: jshint, build less mapping, concat js and css,
+- **grunt build**: dev build plus minify and uglify
+
+## Concatenate dependencies
+
+Two json files exists to control js and css dependencies, which are bundled to the `app/app.bundle` files.
+
+- **build-js.json**: for javascript files
+- **build-css.json**: for css files
+
+This is an array of path to merge before the application files.
+
+----------
+
 # angular-seed — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
