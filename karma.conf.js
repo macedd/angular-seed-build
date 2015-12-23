@@ -1,15 +1,17 @@
 module.exports = function(config){
+  var appJsFiles = require('./build-js.json');
+
+  appJsFiles.push.apply(appJsFiles, [
+      "bower_components/angular-mocks/angular-mocks.js",
+      'app/app.js',
+      'app/*/**/*.js'
+    ]);
+
   config.set({
 
     basePath : './',
 
-    files : [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-route/angular-route.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/components/**/*.js',
-      'app/view*/**/*.js'
-    ],
+    files : appJsFiles,
 
     autoWatch : true,
 
