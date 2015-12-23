@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     distdir: 'app',
     pkg: grunt.file.readJSON('package.json'),
     src: {
-      js: ['app/**/*.js', '!app/**/*_test.js', '!app/app.bundle.js'],
+      js: ['app/**/*.js', '!app/**/*_test.js', '!app/app.bundle.*'],
       jsTpl: ['<%= distdir %>/templates/**/*.js'],
       specs: ['test/**/*.spec.js'],
       scenarios: ['test/**/*.scenario.js'],
